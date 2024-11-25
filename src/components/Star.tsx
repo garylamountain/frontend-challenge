@@ -7,7 +7,7 @@ const Star = ({ marked, starId }: StarProps) => {
   return (
     <span
       data-star-id={starId}
-      className="text-3xl cursor-pointer"
+      className="text-3xl cursor-pointer hover:text-yellow-500"
       role="button"
     >
       {marked ? "\u2605" : "\u2606"}
