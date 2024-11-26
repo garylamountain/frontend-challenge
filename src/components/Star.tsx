@@ -8,7 +8,7 @@ const Star = ({ marked, starId, onClick }: StarProps) => {
   return (
     <span
       data-star-id={starId}
-      className="text-3xl cursor-pointer hover:text-yellow-500"
+      className={`text-3xl cursor-pointer hover:text-yellow-500 ${ marked ? 'text-yellow-500' : '' }`}
       role="button"
       onClick={onClick}
     >
