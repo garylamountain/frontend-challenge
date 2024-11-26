@@ -68,22 +68,20 @@ const StarRating = ({ submitReview, numOfReviews }: StarRatingProps) => {
       <input
         id="name"
         type="text"
-        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed"
+        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Full Name"
         maxLength={20}
         value={name}
         onChange={(event) => handleChange(event, "name")}
-        disabled={reviewSubmitted}
       />
 
       <textarea
         id="review"
         rows={4}
-        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed"
+        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Start your review (optional)..."
         value={review}
         onChange={(event) => handleChange(event, "review")}
-        disabled={reviewSubmitted}
       />
 
       {
