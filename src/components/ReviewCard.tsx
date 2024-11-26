@@ -1,4 +1,10 @@
-const ReviewCard = () => {
+import Review from "@/data/Review";
+
+type ReviewProps = {
+    review: Review
+};
+
+const ReviewCard = ({review}: ReviewProps) => {
 
     return (
         <div className="p-4">
@@ -9,7 +15,7 @@ const ReviewCard = () => {
                 <span className="text-yellow-500 text-sm font-medium">★★★★☆</span>
             </div>
             <div>
-                <p className="text-gray-800 font-semibold text-sm">Taylor J.</p>
+                <p className="text-gray-800 font-semibold text-sm">{review.author}</p>
             </div>
         </div>
         <div>
@@ -18,9 +24,7 @@ const ReviewCard = () => {
         
         <div className="text-sm text-gray-700">
             <p>
-            This Yolk location is nestled in Wicker Park. There is tons of street parking in the area, 
-            but no dedicated lot or parking garages that I noticed. It was a beautiful day and we sat by the window. 
-            They were not especially busy. Yolk is always bright and clean, but there is definitely a corporate vibe...
+            {review.review}
             </p>
         </div>
         </div>

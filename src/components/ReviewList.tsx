@@ -14,7 +14,7 @@ const ReviewList = ({ reviews }: ListProps) => {
         {reviews.map(review => {
             return (
                 <div key={review.id}>
-                    <ReviewCard />
+                    <ReviewCard review={review}/>
                 </div>
             )
         })}
