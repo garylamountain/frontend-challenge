@@ -11,8 +11,8 @@ const StarRating = () => {
 
   return (
     <section className="flex flex-col items-center">
-      <div>
-        {[1, 2, 3, 4, 5].map((id) => (
+      <div className="flex flex-row-reverse">
+        {[5, 4, 3, 2, 1].map((id) => (
           <Star
             starId={id}
             marked={rating >= id}
