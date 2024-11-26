@@ -13,11 +13,13 @@ const StarRating = () => {
     <section className="flex flex-col items-center">
       <div className="flex flex-row-reverse">
         {[5, 4, 3, 2, 1].map((id) => (
-          <Star
-            starId={id}
-            marked={rating >= id}
-            onClick={() => handleClick(id)}
-          />
+          <div key={id}>
+            <Star
+              starId={id}
+              marked={rating >= id}
+              onClick={() => handleClick(id)}
+            />
+          </div>
         ))}
       </div>
       <input
