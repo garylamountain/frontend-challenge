@@ -14,14 +14,19 @@ const ReviewApp = () => {
     .then(res => {
       const data = res.data;
       setReviewData(res.data);
-      console.log(data)
     })
     // add error handling
   }, []);
 
+  const submitReview = (newReview: Review) => {
+    // typically this would be a post call to the API
+    const updatedReviewData = [newReview, ...reviewData];
+    setReviewData(updatedReviewData);
+  }
+
   return (
     <div>
-      <StarRating />
+      <StarRating submitReview={submitReview}/>      
       <ReviewList reviews={reviewData}/>
     </div>
   );
