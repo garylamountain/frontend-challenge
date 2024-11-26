@@ -51,21 +51,24 @@ const StarRating = ({ submitReview }: StarRatingProps) => {
     <section className="flex flex-col items-start">
       <div className="flex flex-row-reverse">
         {[5, 4, 3, 2, 1].map((id) => (
-            <Star
-              starId={id}
-              marked={rating >= id}
-              onClick={() => handleClick(id)}
-            />
+          <Star
+            starId={id}
+            marked={rating >= id}
+            onClick={() => handleClick(id)}
+            key={id}
+          />
         ))}
       </div>
-      <textarea
+
+      <input
         id="name"
-        rows={1}
+        type="text"
         className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Full Name"
         value={name}
         onChange={(event) => handleChange(event, "name")}
       />
+
       <textarea
         id="review"
         rows={4}
@@ -74,6 +77,7 @@ const StarRating = ({ submitReview }: StarRatingProps) => {
         value={review}
         onChange={(event) => handleChange(event, "review")}
       />
+
       <button
         type="submit"
         className="mt-10 h-10 px-6 font-semibold rounded-md bg-black text-white cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed"
@@ -82,6 +86,7 @@ const StarRating = ({ submitReview }: StarRatingProps) => {
       >
         {loading ? <Spinner /> : 'Submit Review'}
       </button>
+
     </section>
   );
 };
