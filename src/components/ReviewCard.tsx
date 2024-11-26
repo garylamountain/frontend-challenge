@@ -12,7 +12,9 @@ const ReviewCard = ({review}: ReviewProps) => {
         <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
             <div className="flex items-center">
-                <span className="text-yellow-500 text-sm font-medium">★★★★☆</span>
+            {[...Array(review.rating)].map(() => (
+                <span className="text-yellow-500 text-sm font-medium">{"\u2605"}</span>
+            ))}
             </div>
             <div>
                 <p className="text-gray-800 font-semibold text-sm">{review.author}</p>

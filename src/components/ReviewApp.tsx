@@ -15,7 +15,7 @@ const ReviewApp = () => {
 
   return (
     <div>
-      <StarRating submitReview={submitReview}/> 
+      <StarRating submitReview={submitReview} numOfReviews={reviewData.length}/> 
       {error && 
         <div className="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
           <span className="font-medium">Failed to load reviews: </span>{error.message}
