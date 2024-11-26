@@ -1,3 +1,7 @@
+## *~Notes from Gary:
+
+I considered using local storage to "save" a single review that the user submits; pre-populating and disabling the fields with those values, to make this project act like a "real" review page where a user can only submit one review. However, I didn't want you to have to clear that local storage every time if you want to test things out multiple times.
+
 ## Challenge: Simple Review System
 
 We have set up a React template for a Concierge 5-Star Rating App tailored to point.me’s unique travel expertise. Your task is to enhance this app by implementing key functionality, ensuring that it captures the essence of [our specialized concierge offerings](https://www.point.me/concierge). As a bonus round, feel free to add your own design flair to the output.
