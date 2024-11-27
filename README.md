@@ -1,6 +1,6 @@
 ## *~Notes from Gary:
 
-I considered using local storage to "save" a single review that the user submits; pre-populating and disabling the fields with those values, to make this project act like a "real" review page where a user can only submit one review. However, I didn't want you to have to clear that local storage every time if you want to test things out multiple times.
+This project is using sessionStorage to store one (and only one) review submitted by the user, rather than updating the API to write into the sample data directly. This is to emulate the functionality of leaving a review on a "real" website, where you'd likely only be able to leave one review (which would be associated with your account). That said, simply close and re-open the tab if you'd like to leave a review again.
 
 ## Challenge: Simple Review System
 
