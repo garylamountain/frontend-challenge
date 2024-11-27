@@ -6,20 +6,19 @@ import useFetchReviewData from "@/data/useFetchReviewData";
 
 const ReviewApp = () => {
   const [page, setPage] = useState(1);
-  const { reviewData, setReviewData, error } = useFetchReviewData(page);
+  const { reviewData, setReviewData, lastPage, error } = useFetchReviewData(page);
 
   const submitReview = (newReview: Review) => {
-    // Typically this would be a POST call to the API
     const updatedReviewData = [newReview, ...reviewData];
     setReviewData(updatedReviewData);
   };
 
   const handlePrevious = () => {
-    if(page > 1) setPage(page - 1);
+    if (page > 1) setPage(page - 1);
   };
 
   const handleNext = () => {
-    if(page !== 3) setPage(page + 1);
+    if (!lastPage) setPage(page + 1);
   };
 
   return (
@@ -47,10 +46,11 @@ const ReviewApp = () => {
             />
           </svg>
         </div>
+        <span className="px-4 text-sm text-gray-500">  </span>
         <div
           onClick={handleNext}
           className={`relative inline-flex items-center rounded-r-md px-2 py-2 ${
-            page !== 3 ? "text-gray-400 hover:bg-gray-50 cursor-pointer" : "text-gray-300 cursor-not-allowed"
+            !lastPage ? "text-gray-400 hover:bg-gray-50 cursor-pointer" : "text-gray-300 cursor-not-allowed"
           } ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`}
         >
           <span className="sr-only">Next</span>
@@ -66,6 +66,7 @@ const ReviewApp = () => {
     </div>
   );
 };
+
 
 ReviewApp.displayName = "ReviewApp";
 export default ReviewApp;

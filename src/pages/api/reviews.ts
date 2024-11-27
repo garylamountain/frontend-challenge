@@ -30,9 +30,9 @@ const parseNumberInput = (input: any) => {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Review[]>,
+  res: NextApiResponse<{ reviews: Review[]; lastPage: boolean }>
 ) {
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     const page = parseNumberInput(req.query.page) || DEFAULT_PAGE_NUMBER;
     const pageSize = setPageSize(parseNumberInput(req.query.pageSize));
 
@@ -42,8 +42,13 @@ export default function handler(
     const dataset = data.filter(
       (r: Review) => r.id > startIndex && r.id <= endIndex,
     );
-    res.status(200).json(dataset);
+
+    // Check if more reviews are available
+    const lastPage = endIndex >= data.length;
+
+    res.status(200).json({ reviews: dataset, lastPage });
   } else {
     res.status(404);
   }
 }
+
