@@ -5,10 +5,9 @@ import Review from "@/data/Review";
 
 type StarRatingProps = {
   submitReview: (newReview: Review) => void;
-  numOfReviews: number;
 };
 
-const StarRating = ({ submitReview, numOfReviews }: StarRatingProps) => {
+const StarRating = ({ submitReview }: StarRatingProps) => {
 
   const [rating, setRating] = React.useState<number>(0);
   const [name, setName] = React.useState<string>("");
@@ -17,6 +16,10 @@ const StarRating = ({ submitReview, numOfReviews }: StarRatingProps) => {
 
   // only allow user to submit one review
   const [reviewSubmitted, setReviewSubmitted] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    const userReviewExists = sessionStorage.getItem("userReview") !== null;
+    setReviewSubmitted(userReviewExists);
+  }, [])
 
   const handleClick = (star: number) => {
     setRating(star);
@@ -39,7 +42,7 @@ const StarRating = ({ submitReview, numOfReviews }: StarRatingProps) => {
     // emulate wait time for API call
     setTimeout(() => {
       submitReview({
-        id: numOfReviews + 1,
+        id: Number(new Date()),
         rating,
         review,
         author: name || "Anonymous",
@@ -68,20 +71,22 @@ const StarRating = ({ submitReview, numOfReviews }: StarRatingProps) => {
       <input
         id="name"
         type="text"
-        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed"
         placeholder="Full Name"
         maxLength={20}
         value={name}
         onChange={(event) => handleChange(event, "name")}
+        disabled={reviewSubmitted}
       />
 
       <textarea
         id="review"
         rows={4}
-        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        className="block mt-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed"
         placeholder="Start your review (optional)..."
         value={review}
         onChange={(event) => handleChange(event, "review")}
+        disabled={reviewSubmitted}
       />
 
       {

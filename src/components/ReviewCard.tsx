@@ -6,7 +6,7 @@ type ReviewProps = {
 
 const ReviewCard = ({ review }: ReviewProps) => {
     return (
-        <div className="p-4">
+        <div className="p-4 w-full min-w-[478px]">
             <div className="max-w-lg p-4 border border-gray-200 rounded-lg shadow-sm bg-white">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full">

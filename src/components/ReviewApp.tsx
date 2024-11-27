@@ -1,16 +1,28 @@
 import StarRating from "@/components/StarRating";
-import React, { useState } from "react";
+import React from "react";
 import ReviewList from "./ReviewList";
 import Review from "@/data/Review";
 import useFetchReviewData from "@/data/useFetchReviewData";
 
 const ReviewApp = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = React.useState(1);
   const { reviewData, setReviewData, lastPage, error } = useFetchReviewData(page);
+  const [sessionReviewData, setSessionReviewData] = React.useState<Review[]>([]);
+
+  React.useEffect(() => {
+    const storedReview = JSON.parse(sessionStorage.getItem("userReview") || "null");
+    if(page === 1 && storedReview && !reviewData.some(review => review.id === storedReview.id)){
+      setSessionReviewData([storedReview, ...reviewData]);
+    } else {
+      setSessionReviewData(reviewData);
+    }
+  }, [reviewData, page])
 
   const submitReview = (newReview: Review) => {
-    const updatedReviewData = [newReview, ...reviewData];
-    setReviewData(updatedReviewData);
+    sessionStorage.setItem("userReview", JSON.stringify(newReview));
+    if(page === 1){
+      setReviewData([newReview, ...reviewData]);
+    }
   };
 
   const handlePrevious = () => {
@@ -23,13 +35,13 @@ const ReviewApp = () => {
 
   return (
     <div>
-      <StarRating submitReview={submitReview} numOfReviews={reviewData.length} />
+      <StarRating submitReview={submitReview}/>
       {error && (
         <div className="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
           <span className="font-medium">Failed to load reviews: </span>{error.message}
         </div>
       )}
-      <ReviewList reviews={reviewData} />
+      <ReviewList reviews={sessionReviewData} />
       <div className="flex justify-center items-center mt-4">
         <div
           onClick={handlePrevious}
