@@ -1,3 +1,7 @@
+## *~Notes from Gary:
+
+This project is using sessionStorage to store one (and only one) review submitted by the user, rather than updating the API to write into the sample data directly (which I felt was out of scope for this challenge given the requirements, though this would be entirely possible). I wished to emulate the functionality of leaving a review on a "real" website, where you'd likely only be able to leave one review associated with your account. That said, simply close and re-open the tab if you'd like to leave a review again.
+
 ## Challenge: Simple Review System
 
 We have set up a React template for a Concierge 5-Star Rating App tailored to point.me’s unique travel expertise. Your task is to enhance this app by implementing key functionality, ensuring that it captures the essence of [our specialized concierge offerings](https://www.point.me/concierge). As a bonus round, feel free to add your own design flair to the output.
